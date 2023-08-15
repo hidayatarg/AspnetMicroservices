@@ -1,0 +1,20 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: shopping-mongo
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - mongodb-data:/data/db
+    # Optional: Uncomment the lines below if you have initialization scripts
+    # volumes:
+    #   - ./init-scripts:/docker-entrypoint-initdb.d
+    # Optional: Uncomment the lines below if you have a custom entrypoint script
+    # command: ["--auth"]
+
+volumes:
+  mongodb-data:
