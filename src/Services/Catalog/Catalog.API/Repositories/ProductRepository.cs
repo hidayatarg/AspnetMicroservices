@@ -30,7 +30,9 @@ public class ProductRepository: IProductRepository
 
     public async Task<IEnumerable<Product>> GetProductByName(string name)
     {
-        FilterDefinition<Product> filter = Builders<Product>.Filter.ElemMatch(p => p.Name, name);
+       // var filter = Builders<Product>.Filter.Text(p => p.Name, name);
+        var filter = Builders<Product>.Filter.Where(p => p.Name == name);
+
         return await _context
                         .Products
                         .Find(filter)
