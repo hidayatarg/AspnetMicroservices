@@ -36,3 +36,23 @@
 | POST   | api/v1/Catalog                                 | Create new Product              |
 | PUT    | api/v1/Catalog                                 | Update Product                  |
 | DELETE | api/v1/Catalog/{id}                            | Delete Product                  |
+
+## Catalog Architecture
+
+Tradition n-tier architecture:
+
+User -> Presentation Layer (UI Component => Presentation Layer) -> Business Logic Layer (Service Layer => Business Logic Layer) -> Data Access Layer -> Database (Data Source)
+
+- Data Access Layer: Only database operations are performed here, Add, Update, Delete, Get data from database.
+- Business Logic Layer: Only business logic is implemented here, It will process data taken from the Data Access Layer and return it to the Presentation Layer. We dont use this layer directly, the data comes from user to the Presentation Layer and then to the Business Logic Layer, processed and send to data access layer and then to the database.
+- Presentation Layer: This is the layer where the user interact. It can be a web application or API. The main purpose of this layer to show the data to the user and take the data from the user and send it to the Business Logic Layer.
+
+## Simple Data-Driven CRUD Microservice Architecture
+
+API/Application Layer -> Domain Model Layer -> Infrastructure Layer
+
+- API/Application Layer: Entry point into the service. Exposes endpoints and enforces validations. It will be controller classes.
+
+- Domain Model Layer: Contains business rules and logic. Business operations are implemented here
+
+- Infrastructure Layer: Provides infrustructure plumbing. Primary responsibility is to presistance of business state.
