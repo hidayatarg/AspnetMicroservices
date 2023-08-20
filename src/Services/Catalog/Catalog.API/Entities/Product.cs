@@ -8,7 +8,7 @@ namespace Catalog.API.Entities
 	{
 		[BsonId]
 		[BsonRepresentation(BsonType.ObjectId)]
-		public int Id { get; set; }
+		public string Id { get; set; }
 		
 		[BsonElement("Name")]
 		public string Name { get; set; }
@@ -21,7 +21,7 @@ namespace Catalog.API.Entities
 		
 		public string ImageFile { get; set; }
 		
-		public string Price { get; set; }
+		public decimal Price { get; set; }
 	}
 }
 

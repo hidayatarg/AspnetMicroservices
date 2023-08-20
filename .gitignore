@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+src/.idea/.idea.aspnetrun-microservices/.idea/indexLayout.xml
+.gitignore
+src/.idea/.idea.aspnetrun-microservices/.idea/workspace.xml
