@@ -1,8 +1,23 @@
 version: '3'
 services:
-  mongodb:
+  webapp:
+    image: mcr.microsoft.com/dotnet/aspnet:7.0
+    container_name: catalog.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - 'DatabaseSettings:ConnectionString=mongodb://admin:admin@catalogdb:27017'
+    build:
+      context: .
+      dockerfile: Services/Catalog/Catalog.API/Dockerfile
+    ports:
+      - '8000:80'
+    depends_on:
+      - catalogdb
+
+  catalogdb:
     image: mongo:latest
     container_name: shopping-mongo
+    restart: always
     ports:
       - '27017:27017'
     environment:
