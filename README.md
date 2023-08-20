@@ -56,3 +56,7 @@ API/Application Layer -> Domain Model Layer -> Infrastructure Layer
 - Domain Model Layer: Contains business rules and logic. Business operations are implemented here
 
 - Infrastructure Layer: Provides infrustructure plumbing. Primary responsibility is to presistance of business state.
+
+## Repository Design Pattern
+
+It follows solid patterns. I has two purpose it is an abstration of data layer and it is a way to centralize handling the domain object. It is like a middle layer between the application and data access logic. It makes code easy to maintain and test.
