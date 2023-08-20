@@ -13,6 +13,16 @@ services:
       - '8000:80'
     depends_on:
       - catalogdb
+        
+  mongoclient:
+    image: mongoclient/mongoclient
+    container_name: mongoclient
+    environment:
+      MONGOCLIENT_DEFAULT_CONNECTION_URL: mongodb://admin:admin@catalogdb:27017
+    ports:
+      - "3100:3000"
+    depends_on:
+      - catalogdb
 
   catalogdb:
     image: mongo:latest
