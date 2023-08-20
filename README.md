@@ -25,3 +25,14 @@
 - `db.Products.remove({})` to remove all documents in the Products collection
 - `db.Products.drop()` to drop the Products collection
 - `db.dropDatabase()` to drop the CatalogDb database
+
+## Catalog REST APIs
+
+| Method | Request URI                                    | Use Case                        |
+| ------ | ---------------------------------------------- | ------------------------------- |
+| GET    | api/v1/Catalog                                 | Listing Products and Categories |
+| GET    | api/v1/Catalog/{id}                            | Get Product with ProductId      |
+| GET    | api/v1/Catalog/GetProductByCategory/{category} | Get Products with Category      |
+| POST   | api/v1/Catalog                                 | Create new Product              |
+| PUT    | api/v1/Catalog                                 | Update Product                  |
+| DELETE | api/v1/Catalog/{id}                            | Delete Product                  |
