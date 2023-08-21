@@ -1,7 +1,31 @@
 version: '3'
 services:
+  catalogdb:
+    image: mongo:latest
+    container_name: catalogdb
+    restart: always
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - mongodb-data:/data/db
+    # Optional: Uncomment the lines below if you have initialization scripts
+    # volumes:
+    #   - ./init-scripts:/docker-entrypoint-initdb.d
+    # Optional: Uncomment the lines below if you have a custom entrypoint script
+    # command: ["--auth"]
+
+  basketdb:
+    image: redis:latest
+    container_name: basketdb
+    restart: always
+    ports:
+      - '6379:6379'
+
   catalog.api:
-    image: mcr.microsoft.com/dotnet/aspnet:7.0
+    image: ${DOCKER_REGISTRY-}catalogapi
     container_name: catalog.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -15,7 +39,7 @@ services:
       - catalogdb
 
   basket.api:
-    image: mcr.microsoft.com/dotnet/aspnet:7.0
+    image: ${DOCKER_REGISTRY-}basketapi
     container_name: basket.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -37,30 +61,6 @@ services:
       - '3100:3000'
     depends_on:
       - catalogdb
-
-  catalogdb:
-    image: mongo:latest
-    container_name: shopping-mongo
-    restart: always
-    ports:
-      - '27017:27017'
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: admin
-    volumes:
-      - mongodb-data:/data/db
-    # Optional: Uncomment the lines below if you have initialization scripts
-    # volumes:
-    #   - ./init-scripts:/docker-entrypoint-initdb.d
-    # Optional: Uncomment the lines below if you have a custom entrypoint script
-    # command: ["--auth"]
-
-  basketdb:
-    image: redis:latest
-    container_name: basketdb
-    restart: always
-    ports:
-      - '6379:6379'
 
 volumes:
   mongodb-data:
