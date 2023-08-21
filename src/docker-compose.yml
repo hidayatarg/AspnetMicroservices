@@ -13,14 +13,13 @@ services:
       - '8000:80'
     depends_on:
       - catalogdb
-      
+
   basket.api:
     image: mcr.microsoft.com/dotnet/aspnet:7.0
     container_name: basket.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - 'CacheSettings:ConnectionString=basketdb:6379'
-      
     build:
       context: .
       dockerfile: Services/Basket/Basket.API/Dockerfile
@@ -28,14 +27,14 @@ services:
       - '8001:80'
     depends_on:
       - basketdb
-        
+
   mongoclient:
     image: mongoclient/mongoclient
     container_name: mongoclient
     environment:
       MONGOCLIENT_DEFAULT_CONNECTION_URL: mongodb://admin:admin@catalogdb:27017
     ports:
-      - "3100:3000"
+      - '3100:3000'
     depends_on:
       - catalogdb
 
@@ -55,6 +54,13 @@ services:
     #   - ./init-scripts:/docker-entrypoint-initdb.d
     # Optional: Uncomment the lines below if you have a custom entrypoint script
     # command: ["--auth"]
+
+  basketdb:
+    image: redis:latest
+    container_name: basketdb
+    restart: always
+    ports:
+      - '6379:6379'
 
 volumes:
   mongodb-data:
