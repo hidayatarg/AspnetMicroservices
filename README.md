@@ -26,6 +26,14 @@
 - `db.Products.drop()` to drop the Products collection
 - `db.dropDatabase()` to drop the CatalogDb database
 
+### Redis
+
+- `docker pull redis` to pull the redis image
+- `docker run -d -p 6379:6379 --name aspnetrun-redis redis` to run the redis image
+- `docker logs -f aspnetrun-redis` to see the logs of the redis image
+- `docker exec -it aspnetrun-redis redis-cli` to enter the redis image
+- `docker exec -it aspnetrun-redis bin/bash` to enter the redis image
+
 ## Catalog REST APIs
 
 | Method | Request URI                                    | Use Case                        |
@@ -37,7 +45,16 @@
 | PUT    | api/v1/Catalog                                 | Update Product                  |
 | DELETE | api/v1/Catalog/{id}                            | Delete Product                  |
 
-## Catalog Architecture
+## Basket REST APIs
+
+| Method | Request URI            | Use Case                                            |
+| ------ | ---------------------- | --------------------------------------------------- |
+| GET    | api/v1/Basket          | Get Basket and Items with username                  |
+| POST   | api/v1/Basket          | Update Basket and Items (Add remove item to basket) |
+| DELETE | api/v1/Basket/{id}     | Delete Basket                                       |
+| POST   | api/v1/Basket/Checkout | Checkout Basket                                     |
+
+## Catalog/Basket Architecture
 
 Tradition n-tier architecture:
 
