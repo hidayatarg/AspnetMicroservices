@@ -1,6 +1,6 @@
 version: '3'
 services:
-  webapp:
+  catalog.api:
     image: mcr.microsoft.com/dotnet/aspnet:7.0
     container_name: catalog.api
     environment:
@@ -13,6 +13,21 @@ services:
       - '8000:80'
     depends_on:
       - catalogdb
+      
+  basket.api:
+    image: mcr.microsoft.com/dotnet/aspnet:7.0
+    container_name: basket.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - 'CacheSettings:ConnectionString=basketdb:6379'
+      
+    build:
+      context: .
+      dockerfile: Services/Basket/Basket.API/Dockerfile
+    ports:
+      - '8001:80'
+    depends_on:
+      - basketdb
         
   mongoclient:
     image: mongoclient/mongoclient
