@@ -24,6 +24,19 @@ services:
     ports:
       - '6379:6379'
 
+  postgredb:
+    image: postgres:latest
+    container_name: postgredb
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: mydatabase
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     container_name: catalog.api
@@ -64,3 +77,4 @@ services:
 
 volumes:
   mongodb-data:
+  postgres-data:
