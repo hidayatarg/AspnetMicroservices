@@ -24,9 +24,9 @@ services:
     ports:
       - '6379:6379'
 
-  postgredb:
+  discountdb:
     image: postgres:latest
-    container_name: postgredb
+    container_name: discountdb
     restart: always
     ports:
       - '5432:5432'
