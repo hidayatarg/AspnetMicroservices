@@ -33,7 +33,7 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
-      POSTGRES_DB: mydatabase
+      POSTGRES_DB: discountdb
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
