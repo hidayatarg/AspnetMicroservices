@@ -73,7 +73,7 @@ services:
       - 'DatabaseSettings:ConnectionString=Server=discountdb;port=5432;database=discountdb;username=admin;password=admin'
     build:
       context: .
-      dockerfile: Services/Basket/Discount.API/Dockerfile
+      dockerfile: Services/Discount/Discount.API/Dockerfile
     ports:
       - '8002:80'
     depends_on:
