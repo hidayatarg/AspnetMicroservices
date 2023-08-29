@@ -65,6 +65,20 @@ services:
     depends_on:
       - basketdb
 
+  discount.api:
+    image: ${DOCKER_REGISTRY-}discountapi
+    container_name: discount.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - 'DatabaseSettings:ConnectionString=Server=discountdb;port=5432;database=discountdb;username=admin;password=admin'
+    build:
+      context: .
+      dockerfile: Services/Basket/Discount.API/Dockerfile
+    ports:
+      - '8002:80'
+    depends_on:
+      - discountdb
+
   mongoclient:
     image: mongoclient/mongoclient
     container_name: mongoclient
@@ -86,7 +100,10 @@ services:
       - '5050:80'
     depends_on:
       - discountdb
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
 
 volumes:
   mongodb-data:
   postgres-data:
+  pgadmin-data:
