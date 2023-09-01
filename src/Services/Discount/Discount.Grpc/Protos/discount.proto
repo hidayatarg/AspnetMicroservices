@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option csharp_namespace = "Discount.Grpc.Protos";
 
-service DiscountService {
+service DiscountProtoService {
 	// exposing the discount service
 	rpc GetDiscount (GetDiscountRequest) returns (CouponModel);
 
