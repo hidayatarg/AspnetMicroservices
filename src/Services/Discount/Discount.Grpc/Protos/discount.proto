@@ -19,7 +19,7 @@ message CouponModel {
 	int32 Id = 1;
 	string ProductName = 2;
 	string Description = 3;
-	string Amount = 4;
+	int32 amount = 4;
 }
 
 message CreateDiscountRequest {
