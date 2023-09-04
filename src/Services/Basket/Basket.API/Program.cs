@@ -15,7 +15,7 @@ builder.Services.AddStackExchangeRedisCache(options =>
 // Dependency Injection
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>
-    (o => o.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]));
+    (o => o.Address = new Uri(builder.Configuration.GetValue<string>("GrpcSettings:DiscountUrl")));
 
 builder.Services.AddScoped<DiscountGrpcService>();
 
