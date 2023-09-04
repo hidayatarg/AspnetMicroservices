@@ -1,5 +1,7 @@
 # AspnetMicroservices
 
+It is written using .net  core 7.0
+
 ### Mongo
 
 - `docker pull mongo` to pull the mongo image
