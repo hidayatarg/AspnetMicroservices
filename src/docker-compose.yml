@@ -81,6 +81,20 @@ services:
     depends_on:
       - discountdb
 
+  discount.grpc:
+    image: ${DOCKER_REGISTRY-}discountgrpc
+    container_name: discount.grpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - 'DatabaseSettings:ConnectionString=Server=discountdb;port=5432;database=discountdb;username=admin;password=admin'
+    build:
+      context: .
+      dockerfile: Services/Discount/Discount.Grpc/Dockerfile
+    ports:
+      - '8003:80'
+    depends_on:
+      - discountdb
+
   mongoclient:
     image: mongoclient/mongoclient
     container_name: mongoclient
