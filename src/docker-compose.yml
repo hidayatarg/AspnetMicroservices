@@ -59,16 +59,14 @@ services:
     container_name: basket.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - 'CacheSettings:ConnectionString=localhost:6379'
-      - 'GrpcSettings:DiscountUrl=discount.grpc'
+      - 'ConnectionStrings:RedisConnection=basketdb:6379'
+      # - 'GrpcSettings:DiscountUrl=discount.grpc'
     build:
       context: .
       dockerfile: Services/Basket/Basket.API/Dockerfile
     ports:
       - '8001:80'
     depends_on:
-      - basketdb
-    links:
       - basketdb
 
   discount.api:

@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Redis cache
 builder.Services.AddStackExchangeRedisCache(options =>
 {
-    options.Configuration = builder.Configuration.GetValue<string>("CacheSetting:ConnectionString");
+    options.Configuration = builder.Configuration.GetConnectionString("RedisConnection");
     options.InstanceName = "Basket.API-";
 });
 

@@ -35,11 +35,11 @@ public class BasketController : ControllerBase
         // and Calculate latest prices of product into shopping cart
         // consume Discount Grpc
 
-        foreach (var item in basket.Items)
-        {
-            var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
-            item.Price -= coupon.Amount;
-        }
+        //foreach (var item in basket.Items)
+        //{
+        //    var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
+        //    item.Price -= coupon.Amount;
+        //}
 
         return Ok(await _repository.UpdateBasket(basket));
     }
