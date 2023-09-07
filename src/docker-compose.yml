@@ -23,9 +23,6 @@ services:
     restart: always
     ports:
       - '6379:6379'
-    volumes:
-      - /src/redis.conf:/tmp/redis.conf
-    command: ['redis-server', '/tmp/redis.conf']
 
   discountdb:
     image: postgres:latest
