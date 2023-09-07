@@ -1,6 +1,6 @@
 # AspnetMicroservices
 
-It is written using .net  core 7.0
+It is written using .net core 7.0
 
 ### Mongo
 
@@ -56,6 +56,13 @@ It is written using .net  core 7.0
 | DELETE | api/v1/Basket/{id}     | Delete Basket                                       |
 | POST   | api/v1/Basket/Checkout | Checkout Basket                                     |
 
+## Order REST APIs
+
+| Method | Request URI  | Use Case                                            |
+| ------ | ------------ | --------------------------------------------------- |
+| GET    | api/v1/Order | Get Orders with username                            |
+| POST   | api/v1/Order | Update Basket and Items (Add remove item to basket) |
+
 ## Catalog/Basket Architecture
 
 Tradition n-tier architecture:
@@ -79,3 +86,16 @@ API/Application Layer -> Domain Model Layer -> Infrastructure Layer
 ## Repository Design Pattern
 
 It follows solid patterns. I has two purpose it is an abstration of data layer and it is a way to centralize handling the domain object. It is like a middle layer between the application and data access logic. It makes code easy to maintain and test.
+
+## Order Microservice Architecture
+
+- Includes CRUD operations
+- Implemented Domain-Driven Design (DDD), CQRS, Clean Architecture,
+- Used best practices and SOLID principles
+- Developed CQRS implementation on commands and queries with using MediatR, FluentValidation and AutoMapper packages
+- Entity Framework Core Code-First approach
+
+#### Get Order by Username
+
+- Consume basketCheckout event from RabbitMQ
+- CQRS implements with triggering OrderCommand to insert order record to database
