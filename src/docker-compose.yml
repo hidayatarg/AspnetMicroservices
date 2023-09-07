@@ -57,7 +57,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - 'ConnectionStrings:RedisConnection=basketdb:6379'
-      # - 'GrpcSettings:DiscountUrl=discount.grpc'
+      - 'GrpcSettings:DiscountUrl=http://discount.grpc'
     build:
       context: .
       dockerfile: Services/Basket/Basket.API/Dockerfile
