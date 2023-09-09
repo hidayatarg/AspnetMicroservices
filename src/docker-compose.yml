@@ -37,6 +37,19 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
+  orderdb:
+    image: mcr.microsoft.com/mssql/server
+    container_name: orderdb
+    restart: always
+    ports:
+      - '1433:1433'
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: SwN12345678
+      MSSQL_ENCRYPT: false # Disable SSL
+    volumes:
+      - mssql-data:/var/opt/mssql
+
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     container_name: catalog.api
@@ -122,3 +135,4 @@ volumes:
   mongodb-data:
   postgres-data:
   pgadmin-data:
+  mssql-data:
