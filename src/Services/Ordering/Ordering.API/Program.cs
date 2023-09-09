@@ -1,3 +1,4 @@
+using Ordering.API.Extensions;
 using Ordering.Application;
 using Ordering.Infrastructure;
 
@@ -24,6 +25,8 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    // Seed data for mssqlserver
+    app.UseItToSeed();
 }
 
 app.UseAuthorization();
