@@ -107,6 +107,20 @@ services:
     depends_on:
       - discountdb
 
+  order.api:
+    image: ${DOCKER_REGISTRY-}orderpi
+    container_name: order.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      #- 'ConnectionStrings:OrderingConnectionString=Server=orderdb, 1433;Database=OrderDb;User Id=sa;Password=SwN12345678;TrustServerCertificate=True;'
+    build:
+      context: .
+      dockerfile: Services/Ordering/Ordering.API/Dockerfile
+    ports:
+      - '8004:80'
+    depends_on:
+      - orderdb
+
   mongoclient:
     image: mongoclient/mongoclient
     container_name: mongoclient
