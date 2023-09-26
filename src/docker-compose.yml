@@ -71,7 +71,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - 'ConnectionStrings:RedisConnection=basketdb:6379'
       - 'GrpcSettings:DiscountUrl=http://discount.grpc'
-      - 'EventBusSettings:HostAddress=amqp://admin:admin@localhost:5672'
+      - 'EventBusSettings:HostAddress=amqp://admin:admin@rabbitmq:5672'
     build:
       context: .
       dockerfile: Services/Basket/Basket.API/Dockerfile
@@ -114,7 +114,7 @@ services:
     container_name: order.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - 'EventBusSettings:HostAddress=amqp://admin:admin@localhost:5672'
+      - 'EventBusSettings:HostAddress=amqp://admin:admin@rabbitmq:5672'
       #- 'ConnectionStrings:OrderingConnectionString=Server=orderdb, 1433;Database=OrderDb;User Id=sa;Password=SwN12345678;TrustServerCertificate=True;'
     build:
       context: .
