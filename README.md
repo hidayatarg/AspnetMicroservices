@@ -99,3 +99,31 @@ It follows solid patterns. I has two purpose it is an abstration of data layer a
 
 - Consume basketCheckout event from RabbitMQ
 - CQRS implements with triggering OrderCommand to insert order record to database
+
+## API Gateway
+
+When design and build large complex microservice-based applications with multiple client applications, a good approch to consider is an API Gateway. This pattern is a service provides a single-entry point into the certain groups of microservices. It is similar to Facade pattern from object-oriented desing, in this case it is a part of a distributed system.
+
+The API Gateway pattern is also known as the "backend for frontend" (BFF) because you build it while thinking about the needs of the client application. Therefore, it sits between the clients and the microservices. It acts as a reverse proxy, routing requests from clients to services. It can also provide other cross-cutting functionality such as authentication, SSL termination, and cache.
+
+The API Gateway handles requests in one of two ways. Some requests are simply proxied/routed to the appropriate service. It handles other requests by fanning out to multiple services.
+used to handle requests by routing them to the appropriate backend service or by invoking multiple backend services and aggregating the results.
+
+In the bellow example, the API Gateway would be implemented as a custom ASP.NET Core WebHost services. Usually it is not a good idea to have a single API Gateway aggregating all the internal microservices. If it does, it acts a monolithic aggregator or orchestrator and violates microservice autonomy by coupling all the microservices. Therefore, the API Gateways should be segregated by business boundaries and the cient applications and should not act as a single aggregator for all the internal microservices.
+
+It is better to have multiple API Gateways, each one for a specific group of microservices. This way, the API Gateway is closer to the client application and can be optimized for its needs.
+
+![API Gateway](images/api-gateway.png)
+
+### BFF Backend for Frontend Pattern
+
+When splitting the API Gateway tier into multiple API Gateways, if the application has multiple client apps, there can be a primary pivot when identifying the multiple API Gateways types, so that you can have a different Facade for the needs of each client application. That means you can split to the requirements. As for the client into the custom API gateway with applying the BFF Backend for Frontend Pattern
+
+### Ocelot API Gateway
+
+It is a Lightweight API Gateway that recommended for simpler approches.
+Ocelot is an Open Source API Gateway built using .NET Core. It is aimed at microservices architectures where there is a need for a unified entry point into the system.
+
+It is lightweight, fast, scalable and provides routing, filtering, caching, authentication, rate limiting and load balancing out of the box. The main reason to choose Ocelot for our reference application is because it is a lightweight .NET Core API Gateway. It is easy to use and configure. It is also open source and has a very active community. It can be deploy into the same application deployment environment where we deploy our microservices or containers such as Docker Host, Kubernetes and etc.
+
+Ocelot is designed to work .NET Core only.
