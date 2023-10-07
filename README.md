@@ -127,3 +127,17 @@ Ocelot is an Open Source API Gateway built using .NET Core. It is aimed at micro
 It is lightweight, fast, scalable and provides routing, filtering, caching, authentication, rate limiting and load balancing out of the box. The main reason to choose Ocelot for our reference application is because it is a lightweight .NET Core API Gateway. It is easy to use and configure. It is also open source and has a very active community. It can be deploy into the same application deployment environment where we deploy our microservices or containers such as Docker Host, Kubernetes and etc.
 
 Ocelot is designed to work .NET Core only.
+
+## Analysis and Design of API Gateway
+
+- Route Catalog APIs with /Catalog path
+- Route Basket APIs with /Basket path
+- Route Order APIs with /Order path
+
+| Method   | Request URI      | Use Case                   |
+| -------- | ---------------- | -------------------------- |
+| GET/POST | /Catalog         | Route /api/v1/Catalog APIs |
+| GET      | /Catalog/{id}    | Route /api/v1/Catalog APIs |
+| GET/POST | /Basket          | Route /api/v1/Basket APIs  |
+| POST     | /Basket/Checkout | Route /api/v1/Basket APIs  |
+| GET      | /Order           | Order /api/v1/Order APIs   |
