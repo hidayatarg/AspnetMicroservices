@@ -2,6 +2,11 @@ using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
+var env = builder.Environment;
+
+// configureAppConfiguration
+builder.Configuration.AddJsonFile($"ocelot.{env}.json", true, true);
+
 
 // logging configuration
 builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
