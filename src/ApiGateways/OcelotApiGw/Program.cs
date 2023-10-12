@@ -2,10 +2,10 @@ using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
-var env = builder.Environment;
+var env = builder.Environment.EnvironmentName;
 
 // configureAppConfiguration
-builder.Configuration.AddJsonFile($"ocelot.{env}.json", true, true);
+builder.Configuration.AddJsonFile($"ocelot.{env}.json", false, true);
 
 
 // logging configuration
@@ -17,8 +17,10 @@ builder.Services.AddOcelot();
 
 var app = builder.Build();
 
-app.UseOcelot().Wait();
+app.UseHttpsRedirection();
+await app.UseOcelot();
+app.UseAuthorization();
 
-app.MapGet("/", () => "Hello World!");
+app.MapControllers();
 
 app.Run();
