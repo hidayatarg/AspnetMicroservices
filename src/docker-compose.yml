@@ -132,7 +132,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     build:
       context: .
-      dockerfile: APIGateway/OcelotApiGw/Dockerfile
+      dockerfile: APIGateways/OcelotApiGw/Dockerfile
     ports:
       - '8010:80'
     depends_on:
