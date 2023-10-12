@@ -141,3 +141,15 @@ Ocelot is designed to work .NET Core only.
 | GET/POST | /Basket          | Route /api/v1/Basket APIs  |
 | POST     | /Basket/Checkout | Route /api/v1/Basket APIs  |
 | GET      | /Order           | Order /api/v1/Order APIs   |
+
+## Gateway Aggregation Pattern
+
+Using a gateway to aggregate multiple individual requests are made a single request.This pattern is useful when a client must make multiple calls to different backend systems to perform an operation.
+
+In order to perform a single task, a client may have to make multiple calls to various backend services. An application that relies on many services to perform a task must expend resources on each request. For example, When any new feature or service is added to the application, additional requests are needed, further increasing resource requirements and network calls. This chattiness between a client and a backend can adversely impact the performance and scale of the application.
+
+Microservice architectures have made this problem more common, as applications built around many smaller services naturally have a higher amount of cross-service calls. So, as a solution of that, use a gateway to reduce chattiness between the client and the services. The gateway can aggregate multiple requests into a single request, reducing the number of round trips between the client and the backend services.
+
+![Gateway-aggregation](images/aggregator.png)
+
+Using chain http calls are not a good practice. It is better to use a gateway to aggregate multiple individual requests are made a single request.
