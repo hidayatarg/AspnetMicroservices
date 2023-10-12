@@ -125,6 +125,22 @@ services:
       - orderdb
       - rabbitmq
 
+  ocelotapigw:
+    image: ${DOCKER_REGISTRY-}ocelotapigw
+    container_name: ocelotapigw
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    build:
+      context: .
+      dockerfile: APIGateway/OcelotApiGw/Dockerfile
+    ports:
+      - '8010:80'
+    depends_on:
+      - catalog.api
+      - basket.api
+      - discount.api
+      - discount.grpc
+
   rabbitmq:
     image: rabbitmq:3-management-alpine
     container_name: rabbitmq
