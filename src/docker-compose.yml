@@ -109,9 +109,9 @@ services:
     depends_on:
       - discountdb
 
-  order.api:
-    image: ${DOCKER_REGISTRY-}orderpi
-    container_name: order.api
+  ordering.api:
+    image: ${DOCKER_REGISTRY-}orderingapi
+    container_name: ordering.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - 'EventBusSettings:HostAddress=amqp://admin:admin@rabbitmq:5672'
@@ -139,7 +139,7 @@ services:
       - catalog.api
       - basket.api
       - discount.api
-      - discount.grpc
+      - ordering.api
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
