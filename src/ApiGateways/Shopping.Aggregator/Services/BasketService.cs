@@ -1,3 +1,4 @@
+using Shopping.Aggregator.Extensions;
 using Shopping.Aggregator.Models;
 
 namespace Shopping.Aggregator.Services;
@@ -11,8 +12,9 @@ public class BasketService : IBasketService
         _client = client ?? throw new ArgumentNullException(nameof(client));
     }
     
-    public Task<BasketModel> GetBasket(string userName)
+    public async Task<BasketModel> GetBasket(string userName)
     {
-        throw new NotImplementedException();
+        var response = await _client.GetAsync($"/api/v1/Basket/{userName}");
+        return await response.ReadContentAs<BasketModel>();
     }
 }
