@@ -141,6 +141,24 @@ services:
       - discount.api
       - ordering.api
 
+  shopping.aggregator:
+    image: ${DOCKER_REGISTRY-}shoppingaggregator
+    container_name: shopping.aggregator
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - 'ApiSettings:CatalogUrl=http://catalog.api'
+      - 'ApiSettings:BasketUrl=http://basket.api'
+      - 'ApiSettings:OrderingUrl=http://ordering.api'
+    build:
+      context: .
+      dockerfile: APIGateways/Shopping.Aggregator/Dockerfile
+    ports:
+      - '8005:80'
+    depends_on:
+      - catalog.api
+      - basket.api
+      - ordering.api
+
   rabbitmq:
     image: rabbitmq:3-management-alpine
     container_name: rabbitmq
