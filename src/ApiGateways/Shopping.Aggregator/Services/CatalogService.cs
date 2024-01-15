@@ -5,6 +5,7 @@ namespace Shopping.Aggregator.Services;
 
 public class CatalogService : ICatalogService
 {
+    // similar to shopping.aggregator services/catalogservice
     private readonly HttpClient _client;
 
     public CatalogService(HttpClient client)
