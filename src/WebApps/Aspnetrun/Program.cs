@@ -1,4 +1,4 @@
-using Aspnetrun;
+using Aspnetrun.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +9,22 @@ var configuration = new ConfigurationBuilder()
 
 //builder.Services.AddServices(configuration);
 // Add services to the container.
+
+builder.Services.AddHttpClient<ICatalogService, CatalogService>(c =>
+{
+    c.BaseAddress = new Uri(builder.Configuration["ApiSettings:GatewayAddress"]);
+});
+
+builder.Services.AddHttpClient<IBasketService, BasketService>(c =>
+{
+    c.BaseAddress = new Uri(builder.Configuration["ApiSettings:GatewayAddress"]);
+});
+
+builder.Services.AddHttpClient<IOrderService, OrderService>(c =>
+{
+    c.BaseAddress = new Uri(builder.Configuration["ApiSettings:GatewayAddress"]);
+});
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
