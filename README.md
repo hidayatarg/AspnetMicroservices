@@ -1,6 +1,6 @@
 # AspnetMicroservices
 
-It is written using .net core 7.0. Here is the big picture of the project
+It is written using .net core 7.0. Here is the big picture of the project. Sooner I will upgrade to .net 8.0
 ![Big-Picture](images/big_pic.png)
 
 ## Catalog REST APIs
