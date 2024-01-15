@@ -1,8 +1,4 @@
-﻿using Aspnetrun.Data;
-using Aspnetrun.Repositories;
-using Microsoft.EntityFrameworkCore;
-
-namespace Aspnetrun
+﻿namespace Aspnetrun
 {
     public static class ServiceRegistration
     {
@@ -19,10 +15,10 @@ namespace Aspnetrun
             //    c.UseSqlServer(configuration.GetConnectionString("AspnetRunConnection")));
 
             // add repository dependecy
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<ICartRepository, CartRepository>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped<IContactRepository, ContactRepository>();
+            //services.AddScoped<IProductRepository, ProductRepository>();
+            //services.AddScoped<ICartRepository, CartRepository>();
+            //services.AddScoped<IOrderRepository, OrderRepository>();
+            //services.AddScoped<IContactRepository, ContactRepository>();
 
 
             return services;
